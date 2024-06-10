@@ -1,0 +1,55 @@
+{# templates/search_user.html.twig #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche et modification d'état d'un utilisateur</title>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="/dashboardadmin">Retour Admin dashboard</a></li>
+    </ul>
+</nav>
+    <h2>Rechercher un utilisateur</h2>
+          {% for label, messages in app.flashes %}
+            <div class="flash-{{ label }}" style="color:green">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    <form action="/admin/searchuser" method="POST">
+        <label for="user_login">Login de l'utilisateur:</label><br>
+        <input type="text" id="user_login" name="user_login" required><br>
+        <input type="submit" value="Rechercher">
+    </form>
+    {% if user is defined and user is not empty %}
+        <h2>Modifier l'état de l'utilisateur</h2>
+    <form action="/admin/updateuser" method="POST">
+        <label for="user_login">Login de l'utilisateur: {{ user.getUserIdentifier() }} </label><br>
+        <input type="hidden" name="user_login" value="{{ user.getUserIdentifier()}}">
+        <br><label for="user_state">Statut Admin:</label><br>
+        <select id="user_state" name="user_state">
+            <option value="1" {% if user.getUserState() %}selected{% endif %}>Oui</option>
+            <option value="0" {% if not user.getUserState() %}selected{% endif %}>Non</option>
+        </select><br><br>
+        <label for="is_product_owner">Product Owner:</label><br>
+        <select id="is_product_owner" name="is_product_owner">
+            <option value="1" {% if user.getIsProductOwner() %}selected{% endif %}>Oui</option>
+            <option value="0" {% if not user.getIsProductOwner() %}selected{% endif %}>Non</option>
+        </select><br><br>
+        <label for="is_translator">Translator:</label><br>
+        <select id="is_translator" name="is_translator">
+            <option value="1" {% if user.getIsTranslator() %}selected{% endif %}>Oui</option>
+            <option value="0" {% if not user.getIsTranslator() %}selected{% endif %}>Non</option>
+        </select><br><br>            
+        <input type="submit" value="Modifier">
+        <a href="/admin/deleteuser/{{user.getId()}}">Supprimer l'utilisalteur</a>
+        {% if message is defined and message is not empty %}
+            {{message}}
+        {% endif %}
+    {% endif %}
+</body>
+</html>

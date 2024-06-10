@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajout de Language</title>
+</head>
+<body>
+
+    <h2>Ajout de Language</h2>
+        {% if error is defined and error is not empty %}
+        <div style="color: red;">{{ error }}</div>
+    {% endif %}
+     {% for label, messages in app.flashes %}
+            <div class="flash-{{ label }}" style="color:green">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    <form href="admin/language/" method="POST">
+        <label for="language_name">Nom du Language:</label><br>
+        <input type="text" id="language_name" name="language_name" required><br>
+        <input type="submit" value="language">
+    </form>
+      <h2>Liste des langues</h2>
+    <ul>
+        {% if languages is defined and languages is not empty %}
+            {% for language in languages %}
+                <li>{{ language.getLanguageName() }} <a href="/admin/language/delete/{{language.getId()}}">X</a></li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+</body>
+</html>

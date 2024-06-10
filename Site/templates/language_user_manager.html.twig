@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Language</title>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="/dashboard/{{userId}}">Retour Dashboard</a></li>
+    </ul>
+</nav>
+
+    <h2>Vos Langues</h2>
+    {% if languages_user is defined and languages_user is not empty %}
+            {% for language in languages_user %}
+                <li>{{  language["language_name"] }} <a href="/dashboard/language/{{userId}}/delete_to_user/{{language["language_id"]}}">X</a></li>
+            {% endfor %}
+        {% endif %}
+    <h2>Ajouter une langue </h2>
+
+      <h2>Liste des langues (Place_Holder ,faudra rajouter du CSS pour faire un menu déroulant)</h2>
+    <ul>
+        {% if languages_in_db is defined and languages_in_db is not empty %}
+            {% for language in languages_in_db %}
+                <li> <a href="/dashboard/language/{{userId}}/add_to_user/{{language["id"]}}">{{  language["language_name"] }}</a></li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+</body>
+</html>

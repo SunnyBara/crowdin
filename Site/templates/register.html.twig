@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <h2>Register</h2>
+        {% if error is defined and error is not empty %}
+        <div style="color: red;">{{ error }}</div>
+    {% endif %}
+    <form action="register" method="POST">
+        <label for="user_login">Login:</label><br>
+        <input type="text" id="user_login" name="user_login" required><br>
+        
+        <label for="user_password">Password:</label><br>
+        <input type="password" id="user_password" name="user_password" required><br>
+        
+        <label for="user_name">Name:</label><br>
+        <input type="text" id="user_name" name="user_name" required><br>
+        
+        <label for="is_translator">Translator:</label><br>
+        <input type="checkbox" id="is_translator" name="is_translator" value="1"><br>
+        
+        <label for="is_product_owner">Product Owner:</label><br>
+        <input type="checkbox" id="is_product_owner" name="is_product_owner" value="1"><br><br>
+        
+        <input type="submit" value="Enregistrer">
+    </form>
+</body>
+</html>

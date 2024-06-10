@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <header>
+        <h1>Dashboard</h1>
+    </header>
+
+    <main>
+        <section id="profile">
+            <h2><strong>{{ user.getUserIdentifier() }} Profil :</strong> </h2>
+        <ul>
+           <li> <a><strong>Nom:</strong> {{ user.getUserName() }}</a> </li>
+           <li> <a><strong>Traducteur:</strong> {{ user.getIsTranslator() ? 'Oui' : 'Non' }}</a> </li>
+           <li> <a><strong>Createur de projet:</strong> {{ user.getIsTranslator() ? 'Oui' : 'Non' }}</a> </li>
+        </ul>
+        </section>
+    <ul>
+        <li><a href="/dashboard/language/{{user.getId()}}">Gerer mes languages</a></li>
+        <li><a href="/dashboard/project/{{user.getId()}}">Mes projets proposés</a></li>
+        <li><a href="/dashboard/language/{{user.getId()}}">Mes traductions</a></li>
+    </ul>
+    </main>
+</body>
+</html>

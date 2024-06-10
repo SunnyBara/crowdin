@@ -1,0 +1,144 @@
+controllers:
+  resource: ../src/Controller/
+  type: attribute
+
+#Registery / Login
+
+RegisterPage:
+  path: /register
+  controller: App\Controller\Register::getRegister
+  methods: GET|HEAD
+
+AddNewUser:
+  path: /register
+  controller: App\Controller\Register::postRegister2
+  methods: POST
+
+LoginPage:
+  path: /login
+  controller: App\Controller\Login::Login
+  methods: GET
+Login:
+  path: /login
+  controller: App\Controller\Login::Authentification
+  methods: Post
+
+#USER
+Dashboard:
+  path: /dashboard/{userId}
+  controller: App\Controller\Dashboard::dashboard
+  methods: GET
+
+#Language User
+LangageManager:
+  path: /dashboard/language/{userId}
+  controller: App\Controller\LanguageManager::language_manager
+  methods: GET
+
+AddUserLanguage:
+  path: dashboard/language/{userId}/add_to_user/{languageId}
+  controller: App\Controller\LanguageManager::addLanguageOfUser
+  methods: [GET, POST]
+
+DeleteUserLanguage:
+  path: /dashboard/language/{userId}/delete_to_user/{languageId}
+  controller: App\Controller\LanguageManager::deleteLanguageOfUser
+  methods: GET
+
+#Project user
+ProjectManager:
+  path: /dashboard/project/{userId}
+  controller: App\Controller\Project::Show_project
+  methods: GET
+
+AddUserProjectPage:
+  path: dashboard/project/{userId}/add_project
+  controller: App\Controller\Project::Create_project_page
+  methods: GET
+
+AddUserProject:
+  path: dashboard/project/{userId}/add_project
+  controller: App\Controller\Project::Create_project
+  methods: POST
+
+DelUserProject:
+  path: dashboard/project/{userId}/delete_project/{projectId}
+  controller: App\Controller\Project::Delete_project
+  methods: GET
+
+#Source User
+
+SourceManager:
+  path: /dashboard/source/{userId}
+  controller: App\Controller\Source::Show_source
+  methods: GET
+
+AddUserSourcePage:
+  path: dashboard/source/{userId}/add_source
+  controller: App\Controller\Source::Create_source_page
+  methods: GET
+
+AddUserSource:
+  path: dashboard/source/{userId}/add_source
+  controller: App\Controller\Source::Create_source
+  methods: POST
+
+DelUserSource:
+  path: dashboard/source/{userId}/delete_source/{sourceId}
+  controller: App\Controller\Source::Delete_source
+  methods: GET
+
+#ADMIN
+AdminDashboard:
+  path: /dashboardadmin
+  controller: App\Controller\DashboardAdmin::dashboardadmin
+  methods: GET
+
+#UserManagement
+UserManagement:
+  path: /admin/user
+  controller: App\Controller\Admin::userpagemanagement
+  methods: GET
+
+SearchUser:
+  path: /admin/searchuser
+  controller: App\Controller\Admin::searchUser
+  methods: [GET, POST]
+
+UpdateUser:
+  path: /admin/updateuser
+  controller: App\Controller\Admin::updateUserState
+  methods: [GET, POST]
+
+DeleteUser:
+  path: /admin/deleteuser/{userId}
+  controller: App\Controller\Admin::deleteUser
+  methods: GET
+
+#Language Management
+LanguagePage:
+  path: /admin/language
+  controller: App\Controller\Admin::showlanguage
+  methods: GET
+AddLanguage:
+  path: /admin/language
+  controller: App\Controller\Admin::addlanguage
+  methods: POST
+DeleteLanguage:
+  path: /admin/language/delete/{id}
+  controller: App\Controller\Admin::deleteLanguage
+  methods: [GET, POST]
+# the controller value has the format 'controller_class::method_name'
+# if the action is implemented as the __invoke() method of the
+# controller class, you can skip the '::method_name' part:
+# controller: App\Controller\BlogController
+# # config/routes.yaml
+# api_post_show:
+#     path:       /api/posts/{id}
+#     controller: App\Controller\BlogApiController::show
+#     methods:    GET|HEAD
+
+# api_post_edit:
+#     path:       /api/posts/{id}
+#     controller: App\Controller\BlogApiController::edit
+#     methods:    PUT
