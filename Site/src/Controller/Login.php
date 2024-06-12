@@ -29,7 +29,7 @@ class Login extends AbstractController
     
     public function Login(): Response
     {
-        return $this->render('login.html.twig', ['name' => "rip"]);
+        return $this->render('login.html.twig');
     }
 
     public function Authentification(): Response | String {

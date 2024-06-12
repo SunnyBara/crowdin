@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Board</title>
+</head>
+<body>
+{% if userId is defined and userId is not empty %}
+<nav>
+    <ul>
+        <li><a href="/dashboard/{{userId}}">Retour Dashboard</a></li>
+        <li><strong><a href="/dashboard/project/{{userId}}/add_project">Creer un projet</a></li>
+    </ul>
+</nav>
+    <header>
+        <h1>  Mes Project</h1>
+    </header>
+ {% endif %}
+    <main>
+        <section id="project">
+            {% if projects is defined and projects is not empty %}
+            {% for project in projects %}
+              <a>  <li>{{  project["project_name"] }}  </a> <a href="/dashboard/project/{{userId}}/delete_project/{{project["id"]}}">X</a></li>
+            {% endfor %}
+        {% endif %}
+        </section>
+    </main>
+</body>
+</html>
